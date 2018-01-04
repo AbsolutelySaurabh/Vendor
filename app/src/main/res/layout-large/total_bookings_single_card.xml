@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    app:cardUseCompatPadding="true"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/card_curved_edges"
+    android:layout_marginRight="20dp"
+    android:padding="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/today_bookings_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="72"
+            android:textSize="40sp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/today_bookings_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today Bookings"
+            android:textSize="23sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
