@@ -23,7 +23,7 @@
             android:padding="20dp"
             android:textSize="30sp"
             android:textColor="@color/white"
-            android:backgroundTint="@color/darker_green"
+            android:backgroundTint="@color/select_service_green"
             android:background="@drawable/card_curved_edges"
             android:layout_gravity="center"
             />

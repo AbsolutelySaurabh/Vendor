@@ -1,27 +1,34 @@
 package com.appsomniac.swagger.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.appsomniac.swagger.R;
 import com.appsomniac.swagger.classfragments.CompletedBookingsFragment;
 import com.appsomniac.swagger.classfragments.PendingBookingsFragment;
-import com.appsomniac.swagger.data.adapter.TodayBookingsDataAdapter;
-import com.appsomniac.swagger.data.adapter.TotalBookingsDataAdapter;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
-import com.appsomniac.swagger.data.model.TotalBookingsHome;
+import com.appsomniac.swagger.config.network.ApiResponse.BookingsResponse;
+import com.appsomniac.swagger.config.network.retrofit.ApiClient;
+import com.appsomniac.swagger.config.network.retrofit.ApiInterface;
+import com.appsomniac.swagger.data.model.Bookings.Bookings;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by absolutelysaurabh on 22/12/17.
@@ -31,12 +38,14 @@ public class BookingsFragment extends Fragment {
 
     ViewPager viewPager;
     private View bookingsFragment;
-    ArrayList<TodayBookingsHome> al_todayBookingsData;
+    public static ArrayList<Bookings> al_pending_bookings;
+    public static ArrayList<Bookings> al_completed_bookings;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         bookingsFragment = inflater.inflate(R.layout.fragment_bookings, container, false);
+
         return bookingsFragment;
     }
 
@@ -44,32 +53,64 @@ public class BookingsFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewPager = (ViewPager)bookingsFragment.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        al_completed_bookings = new ArrayList<>();
+        al_pending_bookings = new ArrayList<>();
 
-        // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) bookingsFragment.findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        SharedPreferences prefs_vendor_details = getContext().getSharedPreferences("VENDOR_DETAILS", MODE_PRIVATE);
+        String store_id = prefs_vendor_details.getString("vendor_id", "0");
 
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        getBookingsData(store_id);
+
+    }
+
+    public void getBookingsData(String store_id){
+
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<BookingsResponse> call = apiService.getBookingsData(store_id);
+
+        call.enqueue(new Callback<BookingsResponse>() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onResponse(Call<BookingsResponse>call, Response<BookingsResponse> response) {
 
-            }
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 0) {
-                } else
-                if(position == 1) {
-                }else
-                if(position == 2){
+                ArrayList<Bookings> al_bookings;
+                al_bookings = response.body().getData();
+                Boolean successOrNot = response.body().getSuccess();
+
+                if(successOrNot) {
+                    //add the pending and completed bookings data in separate arrayLists
+                    for(int i=0;i<al_bookings.size();i++){
+                        if(al_bookings.get(i).getBookingStatus().equals("completed")){
+                            al_completed_bookings.add(al_bookings.get(i));
+                        }else
+                        {
+                            al_pending_bookings.add(al_bookings.get(i));
+                        }
+                    }
+
+                }else{
+                    Toast.makeText(getContext(), "No Bookings till date!", Toast.LENGTH_SHORT).show();
                 }
+
+                viewPager = (ViewPager)bookingsFragment.findViewById(R.id.viewpager);
+                setupViewPager(viewPager);
+
+                // Set Tabs inside Toolbar
+                TabLayout tabs = (TabLayout) bookingsFragment.findViewById(R.id.tabs);
+                tabs.setupWithViewPager(viewPager);
+
+                Log.e("successORnot : ", String.valueOf(successOrNot));
+
             }
             @Override
-            public void onPageScrollStateChanged(int state) {
-
+            public void onFailure(Call<BookingsResponse>call, Throwable t) {
+                // Log error here since request failed
+                Log.e("FAILURE: ", t.toString());
             }
         });
+
+
     }
 
     // Add Fragments to Tabs

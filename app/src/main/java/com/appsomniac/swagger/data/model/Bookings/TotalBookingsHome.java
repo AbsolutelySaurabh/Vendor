@@ -1,4 +1,4 @@
-package com.appsomniac.swagger.data.model;
+package com.appsomniac.swagger.data.model.Bookings;
 
 /**
  * Created by absolutelysaurabh on 21/12/17.

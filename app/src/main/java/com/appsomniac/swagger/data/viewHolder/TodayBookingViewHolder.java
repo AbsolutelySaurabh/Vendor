@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appsomniac.swagger.R;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
+import com.appsomniac.swagger.data.model.Bookings.TodayBookingsHome;
 
 import java.util.ArrayList;
 

@@ -96,10 +96,16 @@ public class DrawerListFragment extends Fragment {
         al_drawers.add(drawer_3);
 
         Drawer drawer_4 = new Drawer();
-        drawer_4.setName("Enquiry");
+        drawer_4.setName("EnquiryData");
         drawer_4.setTextColour("#90A4AE");
         drawer_4.setImageUrl(String.valueOf(R.drawable.enquiry_grey));
         al_drawers.add(drawer_4);
+
+        Drawer drawer_5 = new Drawer();
+        drawer_5.setName("Logout");
+        drawer_5.setTextColour("#90A4AE");
+        drawer_5.setImageUrl(String.valueOf(R.drawable.ic_exit_to_app_black_24dp));
+        al_drawers.add(drawer_5);
 
         return al_drawers;
     }

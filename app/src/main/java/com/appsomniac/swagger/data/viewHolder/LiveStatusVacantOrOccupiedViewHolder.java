@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appsomniac.swagger.R;
-import com.appsomniac.swagger.data.model.LiveStatusVacantOccupied;
+import com.appsomniac.swagger.data.model.LiveStatus.LiveStatusVacantOccupied;
 
 import java.util.ArrayList;
 

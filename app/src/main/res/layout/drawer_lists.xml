@@ -30,7 +30,7 @@
             android:layout_centerHorizontal="true"
             android:text="Bookings"
             android:textSize="18sp"
-            android:textColor="@color/blue_grey_400"
+            android:textColor="@color/white"
             />
 
     </RelativeLayout>

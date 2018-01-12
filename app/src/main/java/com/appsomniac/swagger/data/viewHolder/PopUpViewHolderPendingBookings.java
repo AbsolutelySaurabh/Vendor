@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appsomniac.swagger.R;
-import com.appsomniac.swagger.data.model.PopUpPendingBookings;
+import com.appsomniac.swagger.data.model.Bookings.PopUpPendingBookings;
 
 import java.util.ArrayList;
 

@@ -6,12 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.appsomniac.swagger.data.model.LiveStatusStartBooking;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
-import com.appsomniac.swagger.data.model.TotalBookingsHome;
+import com.appsomniac.swagger.data.model.LiveStatus.LiveStatusStartBooking;
 import com.appsomniac.swagger.data.viewHolder.LiveStatusStartBookingViewHolder;
-import com.appsomniac.swagger.data.viewHolder.TodayBookingViewHolder;
-import com.appsomniac.swagger.data.viewHolder.TotalBookingViewHolder;
 
 import java.util.ArrayList;
 

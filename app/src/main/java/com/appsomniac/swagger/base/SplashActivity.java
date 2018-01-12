@@ -2,6 +2,7 @@ package com.appsomniac.swagger.base;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,9 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
+        SharedPreferences prefs_vendor_details = getSharedPreferences("VENDOR_DETAILS", MODE_PRIVATE);
+        final Boolean loggedIn = prefs_vendor_details.getBoolean("loggedInorNot", false);
+
         new Handler().postDelayed(new Runnable() {
 
             /*
@@ -33,8 +37,14 @@ public class SplashActivity extends Activity {
                 // This method will be executed once the timer is over
                 // Start your app main activity
 
-                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                startActivity(i);
+                if(loggedIn) {
+
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(i);
+                }
 
                 // close this activity
                 finish();

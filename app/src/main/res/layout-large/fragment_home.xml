@@ -22,10 +22,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="5"
-                android:padding="30dp"
+                android:paddingTop="30dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:background="@color/white"
                 android:layout_alignParentTop="true"
-                android:scrollbars="none" />
+                android:fadeScrollbars="false"
+                />
 
 
             <RelativeLayout
@@ -47,18 +50,20 @@
                     android:text="Order Summary"
                     android:layout_centerVertical="true"
                     android:layout_alignParentStart="true"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:layout_alignParentLeft="true" />
 
-                <TextView
+                <EditText
                     android:id="@+id/start_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Start Date"
+                    android:hint="Start Date"
                     android:layout_centerVertical="true"
+                    android:editable="false"
+                    android:inputType="none"
                     android:layout_toLeftOf="@id/to_text"
                     android:layout_marginRight="20dp"
-                    android:textSize="20sp"
+                    android:textSize="30sp"
                     />
 
                 <TextView
@@ -69,24 +74,24 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/end_date"
                     android:layout_marginRight="20dp"
-                    android:textSize="20sp"
+                    android:textSize="30sp"
 
                     />
 
-                <TextView
+                <EditText
                     android:id="@+id/end_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="End Date"
-                    android:layout_centerVertical="true"
-                    android:textSize="20sp"
+                    android:hint="End Date"
+                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
+                    android:textSize="30sp"
+                    android:editable="false"
+                    android:inputType="none"
+                    android:layout_centerVertical="true"
                     />
 
-
             </RelativeLayout>
-
-
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview_total_summary"
@@ -94,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:scrollbars="none"
+                android:fadeScrollbars="false"
                 android:layout_alignParentBottom="true"
                 tools:ignore="NotSibling" />
 

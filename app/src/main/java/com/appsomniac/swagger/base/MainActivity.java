@@ -1,5 +1,7 @@
 package com.appsomniac.swagger.base;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -10,7 +12,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appsomniac.swagger.R;
@@ -20,51 +25,56 @@ import com.appsomniac.swagger.fragment.EnquiryFragment;
 import com.appsomniac.swagger.fragment.HomeFragment;
 import com.appsomniac.swagger.fragment.DrawerListFragment;
 import com.appsomniac.swagger.fragment.LiveStatusFragment;
+import com.appsomniac.swagger.login.LoginActivity;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerListFragment.OnFragmentInteractionListener {
 
     protected DrawerLayout drawerLayout;
     protected Toolbar actionBar;
+    private TextView dateText, timeText, store_nameText, store_locationText, person_nameText;
     //fragment tags
     public static String TAG = "Home";
+    private ImageView avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_main);
         if(savedInstanceState!=null)
             return;
 
+        dateText = findViewById(R.id.date);
+        timeText = findViewById(R.id.time);
+        store_locationText = findViewById(R.id.store_address);
+        store_nameText = findViewById(R.id.store_name);
+        person_nameText = findViewById(R.id.user_name);
+        avatar = findViewById(R.id.avatar);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        Drawer animal = new Drawer();
-        animal.setName("Penguin");
-        animal.setImageUrl("http://www.emperor-penguin.com/penguin-chick.jpg");
-        animal.setDescription("Penguin Penguin Penguin Penguin Penguin Penguin Penguin Penguin Penguin Penguin Penguin Penguin Penguin ");
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("animal",animal);
-
         HomeFragment homeFragment = new HomeFragment();
-        homeFragment.setArguments(bundle);
 
         fragmentTransaction.add(R.id.framelayout_right, homeFragment);
 
         if(findViewById(R.id.framelayout_left)!=null){
 
             DrawerListFragment animalListFragment = new DrawerListFragment();
-            Toast.makeText(getApplicationContext(), "This is Tablet Layout!", Toast.LENGTH_LONG).show();
-
             fragmentTransaction.add(R.id.framelayout_left,animalListFragment);
 
         }else{
             setUi();
-            Toast.makeText(getApplicationContext(), "This is Phone Layout!",
-                    Toast.LENGTH_LONG).show();
         }
 
         fragmentTransaction.commit();
@@ -103,38 +113,91 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else
         if(id==R.id.nav_drawer_enquiry){
 
-            TAG = "Enquiry";
+            TAG = "EnquiryData";
             EnquiryFragment enquiryFragment = new EnquiryFragment();
             fragmentTransaction.replace(R.id.framelayout_right, enquiryFragment, TAG);
             fragmentTransaction.commit();
 
-        }
+        }else
+            if(id == R.id.nav_drawer_logout){
+
+                SharedPreferences.Editor prefs_vendor_details = getSharedPreferences("VENDOR_DETAILS", MODE_PRIVATE).edit();
+                prefs_vendor_details.clear();
+                prefs_vendor_details.apply();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+            }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-//    private void setActionBar() {
-//
-//        actionBar = (Toolbar) findViewById(R.id.actionBar);
-//        //actionBar.setTitle("Swagger");
-//        setSupportActionBar(actionBar);
-//    }
+    private void setActionBar() {
+
+        actionBar = (Toolbar) findViewById(R.id.actionBar);
+        //actionBar.setTitle("Swagger");
+        setSupportActionBar(actionBar);
+
+        setDateTime();
+        setStoreNameLocation();
+        setPersonImage();
+        setPersonName();
+
+    }
+    public void setStoreNameLocation(){
+        SharedPreferences prefs_vendor_details = getSharedPreferences("VENDOR_DETAILS", MODE_PRIVATE);
+        String store_name = prefs_vendor_details.getString("store_name", " ");
+        String store_location = prefs_vendor_details.getString("store_area", " ");
+
+        store_nameText.setText(store_name);
+        store_locationText.setText(store_location);
+    }
+
+    public void setPersonImage(){
+
+        String posterBaseUrl = this.getSharedPreferences("VENDOR_DETAILS", MODE_PRIVATE).getString("person_photo", " ");
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.error(R.drawable.ic_account_circle_black_24dp);
+        requestOptions.placeholder(R.drawable.ic_account_circle_black_24dp);
+
+        Glide.with(this).load(posterBaseUrl)
+                .apply(requestOptions).thumbnail(0.5f).into(avatar);
+
+    }
+
+    public void setPersonName(){
+        SharedPreferences prefs_vendor_details = getSharedPreferences("VENDOR_DETAILS", MODE_PRIVATE);
+        String person_name = prefs_vendor_details.getString("person_name", " ");
+        person_nameText.setText(person_name);
+    }
+
+    public void setDateTime(){
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+        String formattedDate = dateFormat.format(new Date()).toString();
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
+        String formattedTime = timeFormat.format(new Date()).toString();
+
+        dateText.setText(formattedDate);
+        timeText.setText(formattedTime);
+
+    }
 
     private void setDrawer() {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                //this, drawerLayout, actionBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //drawerLayout.setDrawerListener(toggle);
-        //toggle.syncState();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, actionBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     public void setUi() {
-        //setActionBar();
+        setActionBar();
         setDrawer();
     }
 

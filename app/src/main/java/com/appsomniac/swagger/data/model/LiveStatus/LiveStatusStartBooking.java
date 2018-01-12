@@ -1,4 +1,4 @@
-package com.appsomniac.swagger.data.model;
+package com.appsomniac.swagger.data.model.LiveStatus;
 
 /**
  * Created by absolutelysaurabh on 23/12/17.

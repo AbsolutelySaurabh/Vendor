@@ -12,12 +12,8 @@ import android.view.ViewGroup;
 import com.appsomniac.swagger.R;
 import com.appsomniac.swagger.data.adapter.LiveStatusStartBookingAdapter;
 import com.appsomniac.swagger.data.adapter.LiveStatusVacantOccupiedAdapter;
-import com.appsomniac.swagger.data.adapter.TodayBookingsDataAdapter;
-import com.appsomniac.swagger.data.adapter.TotalBookingsDataAdapter;
-import com.appsomniac.swagger.data.model.LiveStatusStartBooking;
-import com.appsomniac.swagger.data.model.LiveStatusVacantOccupied;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
-import com.appsomniac.swagger.data.model.TotalBookingsHome;
+import com.appsomniac.swagger.data.model.LiveStatus.LiveStatusStartBooking;
+import com.appsomniac.swagger.data.model.LiveStatus.LiveStatusVacantOccupied;
 
 import java.util.ArrayList;
 

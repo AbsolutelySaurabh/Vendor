@@ -1,17 +1,13 @@
 package com.appsomniac.swagger.data.viewHolder;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appsomniac.swagger.R;
-import com.appsomniac.swagger.data.model.CompletedBookings;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
+import com.appsomniac.swagger.data.model.Bookings.Bookings;
 
 import java.util.ArrayList;
 
@@ -28,7 +24,7 @@ public class CompletedBookingsViewHolder extends RecyclerView.ViewHolder {
     public TextView feedback;
     private Context context;
 
-    public CompletedBookingsViewHolder(LayoutInflater from, ViewGroup viewGroup, int position, ArrayList<CompletedBookings> completedBookingsList, final Context context) {
+    public CompletedBookingsViewHolder(LayoutInflater from, ViewGroup viewGroup, int position, ArrayList<Bookings> completedBookingsList, final Context context) {
         super(from.inflate(R.layout.item_completed_bookings, viewGroup, false));
 
         this.context = context;

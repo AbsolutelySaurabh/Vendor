@@ -2,14 +2,11 @@ package com.appsomniac.swagger.data.viewHolder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appsomniac.swagger.R;
-import com.appsomniac.swagger.data.model.LiveStatusStartBooking;
-import com.appsomniac.swagger.data.model.PendingBookings;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
+import com.appsomniac.swagger.data.model.LiveStatus.LiveStatusStartBooking;
 
 import java.util.ArrayList;
 

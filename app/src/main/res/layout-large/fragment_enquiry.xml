@@ -35,7 +35,6 @@
                     android:layout_marginBottom="10dp"
                     android:hint="Query Regarding"
                     android:padding="10dp"
-                    android:inputType="textEmailAddress"
                     android:textColor="@android:color/black"
                     android:textColorHint="@android:color/white" />
             </android.support.design.widget.TextInputLayout>
@@ -51,7 +50,6 @@
                 android:background="@drawable/card"
                 android:layout_marginTop="20dp"
                 android:hint="Enter your query here..."
-                android:inputType="textEmailAddress"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/white" />
 

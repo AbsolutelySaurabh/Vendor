@@ -1,36 +1,32 @@
 package com.appsomniac.swagger.data.adapter;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appsomniac.swagger.R;
 import com.appsomniac.swagger.base.MainActivity;
 import com.appsomniac.swagger.data.model.Drawer;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
 import com.appsomniac.swagger.data.viewHolder.DrawerListViewHolder;
-import com.appsomniac.swagger.data.viewHolder.TodayBookingViewHolder;
 import com.appsomniac.swagger.fragment.BookingsFragment;
 import com.appsomniac.swagger.fragment.EnquiryFragment;
 import com.appsomniac.swagger.fragment.HomeFragment;
 import com.appsomniac.swagger.fragment.LiveStatusFragment;
+import com.appsomniac.swagger.login.LoginActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.nio.file.attribute.PosixFileAttributes;
 import java.util.ArrayList;
-import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
+
 public class DrawerListAdapter extends RecyclerView.Adapter<DrawerListViewHolder> {
 
     private ArrayList<Drawer> al_drawers;
@@ -224,7 +220,7 @@ public class DrawerListAdapter extends RecyclerView.Adapter<DrawerListViewHolder
                         }else
                             if(position == 3){
 
-                                TAG = "Enquiry";
+                                TAG = "EnquiryData";
 
                                 al_drawers.get(3).setImageUrl(String.valueOf(R.drawable.enquiry));
                                 al_drawers.get(1).setImageUrl(String.valueOf(R.drawable.calendar_grey));
@@ -259,7 +255,16 @@ public class DrawerListAdapter extends RecyclerView.Adapter<DrawerListViewHolder
 
                                 notifyDataSetChanged();
 
-                            }
+                            }else
+                                if(position == 4){
+
+                                    SharedPreferences.Editor prefs_vendor_details = mContext.getSharedPreferences("VENDOR_DETAILS", MODE_PRIVATE).edit();
+                                    prefs_vendor_details.clear();
+                                    mContext.startActivity(new Intent(mContext, LoginActivity.class));
+                                    ((Activity)mContext).finish();
+                                    prefs_vendor_details.apply();
+
+                                }
             }
         });
 

@@ -1,80 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+<color name="colorPrimary">#28184b</color>
+<color name="colorPrimaryDark">#20123b</color>
+<color name="colorAccent">#28184b</color>
+<color name="white">#FFFFFF</color>
+<color name="black">#000000</color>
+<color name="transparent">#80000000</color>
+<color name="radiobutton_notchecked">#7F7C7C</color>
+<color name="rating_color">#76C043</color>
+<color name="select_service_green">#59CD45</color>
+<color name="bottom_nav_tint">#989696</color>
+<color name="grey">#D1D2D4</color>
+<color name="default_grey">#D3D3D3</color>
+<color name="nav_header_red">#9C171C</color>
+<color name="nav_header_dark_red">#6A1113</color>
+<color name="search_sub_heading_background">#d1d2d4</color>
+<color name="second_color">#ffc62b</color>
 
-    <color name="colorPrimary">#d50000</color>
-    <color name="colorPrimaryLight">#ff5131</color>
-    <color name="colorPrimaryDark">#9b0000</color>
-    <color name="colorAccent">#d50000</color>
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorFavorite">#ffeb3b</color>
-    <color name="colorGray">#f5f5f5</color>
+<array name="array_dot_active">
+    <item>@color/dot_light_screen1</item>
+    <item>@color/dot_light_screen1</item>
+</array>
 
-    <color name="colorBlue">#2D9CDB</color>
-    <color name="colorBlueDark">#2992CD</color>
-    <color name="colorBlueDarkest">#212121</color>
-    <color name="lightorange">#fdf2df</color>
-    <color name="lightorangedark">#ebd6ab</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
+<array name="array_dot_inactive">
+    <item>@color/white</item>
+    <item>@color/white</item>
+</array>
 
-    <color name="proceed_disable">#DEDEDE</color>
-    <color name="proceed_enable">#72D63A</color>
+<array name="slider_array_dot_active">
+    <item>@color/black</item>
+    <item>@color/black</item>
+    <item>@color/black</item>
+    <item>@color/black</item>
+</array>
 
-    <color name="colorTvShows">#00695c</color>
-    <color name="colorMovies">#ff6f00</color>
-    <color name="colorReveal">#42a5f5</color>
-    <color name="colorRevealLight">#90caf9</color>
-    <color name="transparent">#ffffffff</color>
+<array name="slider_array_dot_inactive">
+    <item>@color/grey</item>
+    <item>@color/grey</item>
+    <item>@color/grey</item>
+    <item>@color/grey</item>
+</array>
 
-    <color name="black">#000000</color>
 
-    <color name="colorChipsBackground">@color/blue_grey_400</color>
+<color name="dot_light_screen1">#f98da5</color>
+<color name="dot_light_screen2">#8cf9eb</color>
+<color name="dot_light_screen3">#93c6fd</color>
+<color name="dot_light_screen4">#e4b5fc</color>
 
-    <color name="white">#FFF</color>
-    <color name="grey_800">#565656</color>
-    <color name="blue_grey_400">#90A4AE</color>
-    <color name="blue_grey_700">#455a64</color>
-    <color name="blue_grey_900">#37474F</color>
-    <color name="red_color">#ff5722</color>
-    <color name="white_50">#fafafa</color>
+<color name="purple">#502A72</color>
+<color name="second_background">#f2f2f2</color>
 
-    <!-- common colours -->
-    <color name="text_primary_dark">#de000000</color> <!-- 87% -->
-    <color name="text_secondary_dark">#8a000000</color> <!-- 54% -->
-    <color name="text_tertiary_dark">#61000000</color> <!-- 38% -->
-    <color name="text_primary_light">#ffffffff</color>
-    <color name="text_secondary_light">#b3ffffff</color> <!-- 70% -->
-    <color name="text_disabled_light">#4dffffff</color> <!-- 30% -->
-    <color name="ripple_light">#99ffffff</color>
-    <color name="ripple_dark">@color/mid_grey</color>
-    <color name="background_light">#fafafa</color> <!-- grey 50 -->
-    <color name="background_lightish">#e0e0e0</color> <!-- grey 300 -->
-    <color name="background_card">#ffffff</color>
-    <color name="background_dark">#ff333333</color>
-    <color name="immersive_bars">#99000000</color>
-    <color name="light_immersive_bars">@color/immersive_bars</color>
-    <color name="status_bar_back">#ff676767</color> <!-- this is blended with immersive_bars to produce the desired status bar color i.e. background_super_dark -->
-    <color name="background_super_dark">#ff292929</color>
-    <color name="scrim">#99323232</color>
-    <color name="mid_grey">#40808080</color>
-    <color name="light_grey">#fff5f5f5</color>
-    <color name="grey_200">#ffeeeeee</color>
-    <color name="grey_300">#ffe0e0e0</color>
-    <color name="content_placeholder">#ffe0e0e0</color>
-    <color name="dark_icon">#99000000</color> <!-- 60% black-->
-    <color name="dark_icon_half_alpha">#4d000000</color> <!-- 30% black-->
-    <color name="dark_icon_on_primary">#ff2a6046</color> <!-- 60% black on @color/primary -->
-    <color name="inline_action_icon">#ff757575</color> <!-- grey 600 -->
-    <color name="light_icon">#ffffffff</color>
-    <color name="divider">#1f000000</color> <!-- 12% black -->
-    <color name="page_indicator_dark">#80333333</color>
-    <color name="page_indicator_dark_selected">#ff333333</color>
-    <color name="selected_comment_background">#ffffffff</color>
-    <color name="error">#ffdd2c00</color>
+<color name="md_red_50">#FFEBEE</color>
+<color name="md_red_100">#FFCDD2</color>
+<color name="md_red_200">#EF9A9A</color>
+<color name="md_red_300">#E57373</color>
+<color name="md_red_400">#EF5350</color>
+<color name="md_red_500">#F44336</color>
+<color name="md_red_600">#E53935</color>
+<color name="md_red_700">#D32F2F</color>
+<color name="md_red_800">#C62828</color>
+<color name="md_red_900">#B71C1C</color>
+<color name="md_red_A100">#FF8A80</color>
+<color name="md_red_A200">#FF5252</color>
+<color name="md_red_A400">#FF1744</color>
+<color name="md_red_A700">#D50000</color>
 
-    <color name="darker_green">#388E3C</color>
-    <color name="green">#83CF1C</color>
-    <color name="green_dark">#5AB831</color>
-    <color name="green_light">#DCEDC8</color>
-    <color name="darkest_green">#00695c</color>
+<color name="dark_grey">#3e3f3f</color>
+<color name="profile_header">@color/second_color</color>
+<color name="profile_arrow">@color/colorPrimary</color>
+<color name="profile_icon">#bdbdbd</color>
+
+    <color name="grey_200">#F5F5F5</color>
+    <color name="purple_light">#EDE7F6</color>
+
 
 </resources>

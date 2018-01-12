@@ -1,27 +1,16 @@
 package com.appsomniac.swagger.data.viewHolder;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appsomniac.swagger.R;
-import com.appsomniac.swagger.base.MainActivity;
-import com.appsomniac.swagger.data.adapter.DrawerListAdapter;
-import com.appsomniac.swagger.data.adapter.PopUpAdapterPendingBookings;
-import com.appsomniac.swagger.data.model.PendingBookings;
-import com.appsomniac.swagger.data.model.PopUpPendingBookings;
-import com.appsomniac.swagger.data.model.TodayBookingsHome;
+import com.appsomniac.swagger.data.model.Bookings.Bookings;
+import com.appsomniac.swagger.data.model.Bookings.PopUpPendingBookings;
 
 import java.util.ArrayList;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by absolutelysaurabh on 22/12/17.
@@ -35,7 +24,7 @@ public class PendingBookingsViewHolder extends RecyclerView.ViewHolder {
     public TextView services;
     public Context context;
 
-    public PendingBookingsViewHolder(LayoutInflater from, ViewGroup viewGroup, int position, ArrayList<PendingBookings> pendingBookingsList, final Context context) {
+    public PendingBookingsViewHolder(LayoutInflater from, ViewGroup viewGroup, int position, ArrayList<Bookings> pendingBookingsList, final Context context) {
         super(from.inflate(R.layout.item_pending_bookings, viewGroup, false));
 
         //this.tvTitle = itemView.findViewById(R.id.media_title);
